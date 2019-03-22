@@ -1,28 +1,38 @@
-# Write a module that will simulate autonomic car.
-# The simulation is event based, an example:
-# car1 = Car()
-# car1.act(event)
-# print(car1.wheel_angle, car1.speed)
-# where event can be anything you want, i.e. :
-# `('obstacle', 10)` where `10` is a duration (time) of the event.
-##The program should:
-# - act on the event
-# - print out current steering wheel angle, and speed
-# - run in infinite loop
-# - until user breaks the loop
+class Car(object):
+	def __init__(self):
+		self.speed = 0
+		self.wheel_angle = 0
+	def act(*event):
+		eName = event[1]
+		eValue = event[2]
+		eTime = event[3]
 
-#The level of realism in simulation is of your choice, but more sophisticated solutions are better.
-#If you can thing of any other features, you can add them.
-#Make intelligent use of pythons syntactic sugar (overloading, iterators, generators, etc)
-#Most of all: CREATE GOOD, RELIABLE, READABLE CODE.
-#The goal of this task is for you to SHOW YOUR BEST python programming skills.
-#Impress everyone with your skills, show off with your code.
-#
-#Your program must be runnable with command "python task.py".
-#Show some usecases of your library in the code (print some things)
-#
-#When you are done upload this code to github repository. 
-#
-#Delete these comments before commit!
-#Good luck.
-    
+		print(eName,eValue,eTime)
+
+		if eName == '1':
+			self.speed += eValue * eTime 
+		elif eName == '2':
+			self.wheel_angle += eValue * eTime;
+			if(self.wheel_angle > 360+180):
+				self.wheel_angle=360+180
+			if(self.wheel_angle < -360-180):
+				self.wheel_angle=-360-180
+	def wheel_angle():
+		return self.wheel_angle
+	def speed():
+		return self.speed
+
+print("Hello!")
+instruction="1. Add acceleration\n2. Change angle\n3. Exit"
+
+car1 = Car()
+while True:
+	print("Current angle: %f, Current speed %f") % (car1.wheel_angle, car1.speed)
+	print(instruction)
+	option = raw_input()
+	if option == '3':
+		break
+	else:
+		value = raw_input("Type value:\n")
+		time = raw_input("Type duration time:\n")
+		car1.act(option,value,time)
